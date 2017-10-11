@@ -1,9 +1,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Rasmus Lennartsson CV">
+<meta name="description" content="Graf">
 <meta name="author" content="Rasmus Lennartsson">
-<meta name="keywords" content="cv, rasmus, rasmus lenanrtsson, lennartsson, data, it">
+
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 
@@ -13,18 +13,6 @@
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
 <link href="include/style.css" rel="stylesheet">
-
-<?php
-	define( 'ROOT_DIR', dirname("pokemonkarlstad") );
-
-	//Måste vara över session_start()
-	
-	session_start();
-	session_name("pokeSession");
-
-	include "functions.php";
-
-?>
 
 <!--jQuery-->
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
