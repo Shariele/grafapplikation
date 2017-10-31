@@ -1,36 +1,23 @@
 <?php
+include "/include/functions.php";
 
 $action = $_REQUEST['action'];
 
 switch($action){
 	case 'createChart':
-		
-    $username = $_POST['name'];
-    $str = $_POST['value'];
+		$name = $_POST['chartName'];
+		// $value = $_POST['firstValue'];
 
-    //Krypterar lösenordet med md5
-    // $password = md5($str);
-    
-    // $adr = $_SERVER['REMOTE_ADDR'];
+		createChart($name);
+		header("location: index.php");
+	break;
 
-    $sql = "SELECT * FROM account WHERE username = '$username'";
-    $sth = $pdo->prepare($sql);
-	$sth->execute();
+	case 'addChartValue':
+		$id = $_POST['chartId'];
+		$date = $_POST['date'];
+		$value = $_POST['value'];
 
-	$result = $sth->fetchAll();
-	if(!empty($result)){
-		$_SESSION['existing_username'] = "There is already an user with that username, please try another username";
-        header('location: register.php?');
-	}else{
-		$sql = "INSERT INTO account(username, email, password, ip) VALUES('$username','$email','$password','$adr')";
-        $sth = $pdo->prepare($sql);
-		$sth->execute();
-
-		header('location: register.php');
-    	log_to_file("log.log", "Account $username has been created");
-        $_SESSION['success'] = "Your account has been successfully created!";
-	}
-
-
+		addChartValue($id, $value, $date);
+		header("location: graph.php?id=$id");
 	break;
 }

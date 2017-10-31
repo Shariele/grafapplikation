@@ -4,15 +4,24 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Graf</title>
-		<?php
-			 include "include/necessities.php";
+		<?php 
+		include "include/necessities.php";
+		include "include/dbConnect.php"; 
+
+		$sql = "SELECT * FROM charts";
+		$sth = $pdo->prepare($sql);
+		$sth->execute();
+
+		$result = $sth->fetchAll();
+		$name = "name";
+		// var_dump($result);
 		?>
 	</head>
 	<body>
-		<div class="container">
+		<div style="margin-top: 50px;" class="container">
 			<div class="row">
-				<div class="col-md-5 col-md-offset-3">
-					<form action="" class="form-group">
+				<div class="col-md-6 col-md-offset-4">
+					<form action="actionsIndex.php?action=createChart" method="POST" class="form-group">
 						<div class="row">
 							<div class="col-md-6">
 								Chart name:
@@ -23,16 +32,16 @@
 								<input class="form-control" type="text" placeholder="Name" name="chartName" autofocus>
 							</div>
 						</div>
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-6">
 								Value:
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6">
-								<input class="form-control" placeholder="value" type="text" name="value">
+								<input class="form-control" placeholder="value" type="text" name="firstValue">
 							</div>
-						</div>
+						</div> -->
 						<div class="row">
 							<div class="col-md-6">
 								<center><button style="margin-top:10px" class="btn btn-md btn-primary" type="submit" name="button" value="createNew">Create Chart</button></center>
@@ -41,9 +50,25 @@
 					</form>
 				</div>
 			</div>
+			<div class="row">
+				<?php 
+				foreach ($result as $key) { ?>
+					<div style="margin-left: 5px; margin-right: 5px;" class="col-md-4">
+						<div class="row">
+							<center><?php echo $key['name']?></center>
+						</div>
+						<div class="row">
+							<?php echo "<a href=\"graph.php?id=$key[id]\"><img src=\"http://via.placeholder.com/390x375\"></a>"; ?>
+						</div>
+					</div>
+				<?php
+				}
+				?>
+			</div>
 		</div>
 	</body>
 </html>
+
 
 <!-- <html>
   <head>
